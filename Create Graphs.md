@@ -1,14 +1,11 @@
 ~~~C
 
-
-#include <Origin.h>
-
 void Teste_Plot() {
     int num_Right = 3;      // Número de caracteres, a partir da direita, para comparação dos nomes obtidos de cada Worksheet
 
     // Obtenha o nome de todas as WorkSheets no Projeto
     vector<string> vector_Names;
-    out_str('Obtendo o nome de todas as worksheets no Projeto...');
+    out_str("Obtendo o nome de todas as worksheets no Projeto...");
     foreach(WorksheetPage wksPage in Project.WorksheetPages){
         string name_Page = wksPage.GetName().Right(num_Right);
         vector_Names.Add(name_Page);
@@ -51,9 +48,8 @@ void Teste_Plot() {
                     }
                 }
             }
+            gl.GroupPlots(0);
         }
     }
 }
-
-
 ~~~
