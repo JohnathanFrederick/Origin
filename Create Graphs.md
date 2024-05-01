@@ -5,13 +5,18 @@
 
 void Teste_Plot() {
     int num_Right = 3;      // Número de caracteres, a partir da direita, para comparação dos nomes obtidos de cada Worksheet
+#include <Origin.h>
 
-    // Obtenha o nome de todas as WorkSheets no Projeto
+void Teste_Plot() {
+    int num_RightNameMacht = 3;
+
+    // Obtenha o nome de todas as WorkSheets no Projeto para comparação...
     vector<string> vector_Names;
-    out_str("Obtendo o nome de todas as worksheets no Projeto...");
+    out_str("Obtendo o nome de todas as worksheets no Projeto para comparação...");
     foreach(WorksheetPage wksPage in Project.WorksheetPages){
-        string name_Page = wksPage.GetName().Right(num_Right);
-        vector_Names.Add(name_Page);
+        string name_Page = wksPage.GetName();
+        string name_ToMatch = name_Page.Right(num_RightNameMacht);
+        vector_Names.Add(name_ToMatch);
         out_str(name_Page);
     }
 
@@ -36,9 +41,9 @@ void Teste_Plot() {
             gp.Create("Origin");
             GraphLayer gl = gp.Layers();
 
-            // Construa o DataRange para cada WorksheetPage que corresponde ao grupo atual
+            // Adicione os dados ao Layer
             foreach(WorksheetPage wksPage in Project.WorksheetPages) {
-                if(wksPage.GetName().Right(num_Right) == name_Now) {
+                if(wksPage.GetName().Right(num_RightNameMacht) == name_Now) {
                 	out_str("Adicionando os dados de: " + wksPage.GetName() + " ao grupo de: " + name_Now);
                     DataRange dr;
                     Worksheet wks = wksPage.Layers("Data");
@@ -55,6 +60,4 @@ void Teste_Plot() {
         }
     }
 }
-
-
 ~~~
