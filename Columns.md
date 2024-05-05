@@ -1,15 +1,18 @@
 ~~~C
 
-void SetColumnValue(){
-  // Variaveis para a Worksheet processada
-  string name_DataLayer = "Data";
+void CreateColumns(){
+  CreateColumn("Data", "1240,86/col(A)", "", "Energia", "eV", "Energia associada ao comprimento de onda", 3);
+  CreateColumn("Data", "col(B)", "", "Intensidade Relativa", "", "Intensidade Relativa da Emissão", 0);
+}
 
-  // Variáveis para a Coluna criada
-  string str_form = "1240,86/col(A)";
-  string str_ShortName = "";
-  string str_LongName = "";
-  string str_Units = "";
-  string str_Coment = "";
+void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, string str_LongName, string str_Units, string str_Coment, int ColType){
+  // 0: Y
+  // 1: None  
+  // 2: Y Error
+  // 3: X
+  // 4: L
+  // 5: Z
+  // 6: X Error
 
   foreach(WorksheetPage wksPage in Project.WorksheetPages){
     out_str("Acessando WorksheetPage com Long Name: " + wksPage.GetLongName());
@@ -22,7 +25,7 @@ void SetColumnValue(){
       Column col = wks.Columns(int_IndCol);
 
       // Adicione propriedades à coluna
-      col.SetType(OKDATAOBJ_DESIGNATION_X);
+      col.SetType(ColType);
       col.SetFormula(str_form, AU_AUTO);
       col.ExecuteFormula();
       col.SetLongName(str_LongName);
@@ -33,5 +36,4 @@ void SetColumnValue(){
     }
   }
 }
-
 ~~~
