@@ -34,7 +34,7 @@ void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, 
 }
 ~~~
 
-## Encontrando pontos de extremos
+## Visualizando extremos
 A seguinte função encontra os pontos de extremos (máximos e mínimos), plota os gráficos dos dados e adiciona marcadores de dados em cada ponto de mínimo encontrado. Para tanto a função calcula uma aproximação para as derivadas da função, até da terceira ordem, como também calcula média móvel dos dados para amenizar o ruído dos dados. 
 ~~~C
 void ExtremesVisualization(){
@@ -106,7 +106,7 @@ void ExtremesVisualization(){
   }
 }
 ~~~
-
+### Obtendo a média móvel de um conjunto de dados
 ~~~C
 vector MovingAvg(Dataset dsY, int n){
   vector vec_Y;
@@ -121,7 +121,10 @@ vector MovingAvg(Dataset dsY, int n){
   }
   return vec_Y;
 }
-
+~~~
+### Encontrando extremos de um conjunto de dados
+A seguinte função encontra os extremos de um conjunto de dados passado através de um vetor. Para tanto a função usa de alguns limites arbitrários (que dependem de cada tipo de dado) para julgar se um ponto é um limite significativo ou não.
+~~~C
 matrix FindExtreme(vector dsX, vector dsY){
   // Parâmetros para identificação de extremos
   double trheshold_FirstDer = 6;            // Módulo máximo para a primeira derivada de um extremo
@@ -203,7 +206,9 @@ matrix FindExtreme(vector dsX, vector dsY){
   }
   return mat_Extr;
 }
-
+~~~
+### Aproximação para a primeira e segunda derivada
+~~~C
 double Derivatives(int n , double y_Next, double y_Prev, double increment, double y_Curr){
   if(n == 1){
     return  (y_Next - y_Prev)/(2*increment);
