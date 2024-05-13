@@ -1,42 +1,6 @@
 A seguinte função adiciona uma coluna de dados a todas as WorksheetsPages no arquivo Origin, adicionando algumas características a essas colunas.
 ~~~C
-/*------------------------------------------------------------------------------*
- * File Name:				 													*
- * Creation: 																	*
- * Purpose: OriginC Source C file												*
- * Copyright (c) ABCD Corp.	2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010		*
- * All Rights Reserved															*
- * 																				*
- * Modification Log:															*
- *------------------------------------------------------------------------------*/
- 
-////////////////////////////////////////////////////////////////////////////////////
-// Including the system header file Origin.h should be sufficient for most Origin
-// applications and is recommended. Origin.h includes many of the most common system
-// header files and is automatically pre-compiled when Origin runs the first time.
-// Programs including Origin.h subsequently compile much more quickly as long as
-// the size and number of other included header files is minimized. All NAG header
-// files are now included in Origin.h and no longer need be separately included.
-//
-// Right-click on the line below and select 'Open "Origin.h"' to open the Origin.h
-// system header file.
 #include <Origin.h>
-////////////////////////////////////////////////////////////////////////////////////
-
-//#pragma labtalk(0) // to disable OC functions for LT calling.
-
-////////////////////////////////////////////////////////////////////////////////////
-// Include your own header files here.
-
-
-////////////////////////////////////////////////////////////////////////////////////
-// Start your functions here.
-
-
-void CreateColumns(){
-  CreateColumn("Data", "1240,86/col(A)", "", "Energia", "eV", "Energia associada ao comprimento de onda", 3);
-  CreateColumn("Data", "col(B)", "", "Intensidade Relativa", "", "Intensidade Relativa da Emissão", 0);
-}
 
 void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, string str_LongName, string str_Units, string str_Coment, int ColType){
   // 0: Y
