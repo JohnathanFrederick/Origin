@@ -1,7 +1,6 @@
+# Processamento de Dados em Massa
 A seguinte função adiciona uma coluna de dados a todas as WorksheetsPages no arquivo Origin, adicionando algumas características a essas colunas.
 ~~~C
-#include <Origin.h>
-
 void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, string str_LongName, string str_Units, string str_Coment, int ColType){
   // 0: Y
   // 1: None
