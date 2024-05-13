@@ -34,42 +34,10 @@ void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, 
 }
 ~~~
 
-A seguinte função plota os dados de determinadas colunas, e estima os pontos de mínimos e máximos nos gráficos desses dados.
+## Encontrando pontos de extremos
+A seguinte função encontra os pontos de extremos (máximos e mínimos), plota os gráficos dos dados e adiciona marcadores de dados em cada ponto de mínimo encontrado. Para tanto a função calcula uma aproximação para as derivadas da função, até da terceira ordem, como também calcula média móvel dos dados para amenizar o ruído dos dados. 
 ~~~C
-/*------------------------------------------------------------------------------*
- * File Name:				 													*
- * Creation: 																	*
- * Purpose: OriginC Source C file												*
- * Copyright (c) ABCD Corp.	2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010		*
- * All Rights Reserved															*
- * 																				*
- * Modification Log:															*
- *------------------------------------------------------------------------------*/
- 
-////////////////////////////////////////////////////////////////////////////////////
-// Including the system header file Origin.h should be sufficient for most Origin
-// applications and is recommended. Origin.h includes many of the most common system
-// header files and is automatically pre-compiled when Origin runs the first time.
-// Programs including Origin.h subsequently compile much more quickly as long as
-// the size and number of other included header files is minimized. All NAG header
-// files are now included in Origin.h and no longer need be separately included.
-//
-// Right-click on the line below and select 'Open "Origin.h"' to open the Origin.h
-// system header file.
-#include <Origin.h>
-#include <Array.h>
-////////////////////////////////////////////////////////////////////////////////////
-
-//#pragma labtalk(0) // to disable OC functions for LT calling.
-
-////////////////////////////////////////////////////////////////////////////////////
-// Include your own header files here.
-
-
-////////////////////////////////////////////////////////////////////////////////////
-// Start your functions here.
-
-void Teste(){
+void ExtremesVisualization(){
   // Parâmetros para obtenção dos dados
   string name_DataLayer = "Data";
   int ind_ColDataX = 3, ind_ColDataY = 4;
@@ -137,7 +105,9 @@ void Teste(){
     ASSERT(0 == nRet);
   }
 }
+~~~
 
+~~~C
 vector MovingAvg(Dataset dsY, int n){
   vector vec_Y;
   int l = n - 1;
