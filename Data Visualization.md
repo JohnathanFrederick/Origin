@@ -223,7 +223,7 @@ void FormatGraph(GraphLayer gl, double min_X, double max_X, double min_Y, double
 	trFormat.Root.Increment.Shape.nVals = vSymbolShape;  // set symbol shape to theme tree
 	trFormat.Root.Increment.LineStyle.nVals = vLineStyle;  // set line style to theme tree
 	trFormat.Root.Increment.SymbolInterior.nVals = vSymbolInterior;  // set symbol interior to theme tree
-	trFormat.Root.Line.Width.dVal = 2.0;
+    trFormat.Root.Line.Width.dVal = 2.0;
  
 	if(0 == gplot.UpdateThemeIDs(trFormat.Root) )    
 	{
