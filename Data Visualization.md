@@ -170,8 +170,7 @@ void FormatGraph(GraphLayer gl, double min_X, double max_X, double min_Y, double
 
 	// Acesse o objeto GroupPlot
 	GroupPlot gplot = gl.Groups(0);
-	if(!gplot)
-	{
+	if(!gplot){
 		out_str("Cannot get the group plot!");
 		return;
 	}
@@ -200,31 +199,22 @@ void FormatGraph(GraphLayer gl, double min_X, double max_X, double min_Y, double
 	// setting corresponding values to four vectors
 	for(int nPlot=0; nPlot<nNumPlots; nPlot++)
 	{
+        vSymbolShape[nPlot] = 1;
+        vLineStyle[nPlot] = 0;
+        vSymbolInterior[nPlot] = 0;
 		switch (nPlot)
 		{
 			case 0:  // setting for plot 0
 				vLineColor[nPlot] = SYSCOLOR_BLUE;
-				vSymbolShape[nPlot] = 1;  // square
-				vLineStyle[nPlot] = 0;
-				vSymbolInterior[nPlot] = 1;  // open
 				break;
 			case 1:  // setting for plot 1
 				vLineColor[nPlot] = SYSCOLOR_OLIVE;
-				vSymbolShape[nPlot] = 3;  // up triangle
-				vLineStyle[nPlot] = 0;
-				vSymbolInterior[nPlot] = 2;  // dot center
 				break;
 			case 2:  // setting for plot 2
 				vLineColor[nPlot] = SYSCOLOR_RED;
-				vSymbolShape[nPlot] = 5;  // diamond
-				vLineStyle[nPlot] = 0;
-				vSymbolInterior[nPlot] = 5;  // x center
 				break;
 			default:  // setting for other plot
 				vLineColor[nPlot] = SYSCOLOR_CYAN;
-				vSymbolShape[nPlot] = 8;  // hexagon
-				vLineStyle[nPlot] = 0;
-				vSymbolInterior[nPlot] = 0;  // solid
 				break;
 		}
 	}
@@ -233,7 +223,7 @@ void FormatGraph(GraphLayer gl, double min_X, double max_X, double min_Y, double
 	trFormat.Root.Increment.Shape.nVals = vSymbolShape;  // set symbol shape to theme tree
 	trFormat.Root.Increment.LineStyle.nVals = vLineStyle;  // set line style to theme tree
 	trFormat.Root.Increment.SymbolInterior.nVals = vSymbolInterior;  // set symbol interior to theme tree
-    trFormat.Root.Line.Width.dVal = 2.0;
+	trFormat.Root.Line.Width.dVal = 2.0;
  
 	if(0 == gplot.UpdateThemeIDs(trFormat.Root) )    
 	{
