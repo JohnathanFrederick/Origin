@@ -1,5 +1,5 @@
 # Produção de Gráficos em Massa
-Esta seção mostra algumas funções que plotam gráficos em massa no Origin, com Origin C.
+Esta seção trata da produção de gráficos em massa no Origin C. Para tanto todas as funções abaixo são necessárias.
 
 ## Agrupamento das WorksheetsPages pelo ShortName
 A função abaixo agrupa as WorksheetPages no arquivo Origin aberto pelo ShortName, comparando um número inteiro, parametrizado, de caracteres a partir do final do ShortName. Após este agrupamento, a função aplica uma outra função para construção de gráficos para cada conjunto de nome obtido.
