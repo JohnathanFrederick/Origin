@@ -1,4 +1,42 @@
 # Processamento de Dados em Massa
+A seguinte função exporta os dados de todas as worksheetPages cujo nome do datalayer é passado como argumento
+~~~c
+void ExportAllWorkSheets(string name_DataLayer, string strFilePath){
+  foreach(WorksheetPage wksPage in Project.WorksheetPages){
+    string name_wksPage = wksPage.GetLongName();
+    out_str("Acessando WorksheetPage com LongName: " + name_wksPage);
+
+    Worksheet wks = wksPage.Layers(name_DataLayer);
+    if(wks){
+      StringArray saFileTypes;  // file type filter
+      saFileTypes.SetSize(4);
+      saFileTypes[0] = "[*.csv] *.csv";
+      saFileTypes[1] = "[Text File (*.txt)] *.txt";
+      saFileTypes[2] = "[Comma Delimited *.csv] *.csv";
+      saFileTypes[3] = "[All Files (*.*)] *.*";
+      
+      string strFileName = name_wksPage;
+    
+      string strFullPath;  // full file path,including file name
+      strFullPath = GetSaveAsBox(saFileTypes, strFilePath, strFileName);  // open SaveAs dialog
+    
+      if(strFullPath.IsEmpty())
+        out_str("User has cancelled the SaveAs dialog box!\n");
+      else
+      {
+        // export worksheet data, including data, labels, stored missing value as blank
+        int nRet = wks.ExportASCII(strFullPath, WKS_EXPORT_ALL|WKS_EXPORT_LABELS|WKS_EXPORT_MISSING_AS_BLANK);
+        if(nRet == -1)
+          out_str("Failed to export!\n");
+        else
+          printf("The exported file size is %d.\n", nRet);
+      }
+
+    }
+  }
+}
+~~~
+
 A seguinte função adiciona uma coluna de dados a todas as WorksheetsPages no arquivo Origin, adicionando algumas características a essas colunas.
 ~~~C
 void CreateColumn(string name_DataLayer, string str_form, string str_ShortName, string str_LongName, string str_Units, string str_Coment, int ColType){
